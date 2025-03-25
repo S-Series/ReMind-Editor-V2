@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "ReMind-Editor(2.0).sln"
+    "dotnet.defaultSolution": "ReMind-Editor-V2.sln"
 }
