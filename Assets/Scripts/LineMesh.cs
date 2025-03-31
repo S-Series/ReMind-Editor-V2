@@ -1,17 +1,25 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
 public class LineMesh : MonoBehaviour
 {
     void Start()
     {
-        Updatemesh(2, 1, new float[2]{1, 1});
+        Updatemesh(2, 0, 1, 1, 1);
     }
 
-    public void Updatemesh(int length, int ends, float[] widths)
+    /// <param name="length">메쉬가 얼마만큼의 길이를 가질지</param>
+    /// <param name="ends">메쉬의 중심축의 종료 위치 [+: 우측, -: 좌측]</param>
+    /// <param name="widths">메쉬의 시작, 종료의 길이</param>
+    public void Updatemesh(int length, int ends,params float[] widths)
     {
+        if (widths.Length < 2) { widths = new float[2] { 1f, 1f }; }
+
+        TryGetComponent<MeshFilter>(out MeshFilter meshFilter);
+        if (meshFilter == null) return;
+
         Mesh mesh = new Mesh();
-        MeshFilter meshFilter = GetComponent<MeshFilter>();
         mesh.vertices = new Vector3[]{
             new Vector3(-widths[0] / 2, 0, 0),
             new Vector3(+widths[0] / 2, 0, 0),
