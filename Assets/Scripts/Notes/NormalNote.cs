@@ -32,9 +32,9 @@ public class NormalNote: BaseNote
             if (noteStruct.Notes[lane] != this) { throw new Exception(""); }
             if (targetStruct.Notes[lane] != null)
             {
-                bool bl;
-                bl = await WarningSystem.ShowPopupAsync("");
-                if (!bl) { return; }
+                bool passed;
+                passed = await WarningSystem.ShowPopupAsync("");
+                if (!passed) { return; }
             }
             targetStruct.Notes[lane] = this;
             noteStruct.Notes[lane] = null;

@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
@@ -5,28 +6,60 @@ using UnityEngine;
 public class EditManager : MonoBehaviour
 {
     public static EditManager s_this;
-    [SerializeField] GameObject warningPopup;
-    [SerializeField] TextMeshPro warningText;
+    public static BaseNote s_noteSelected;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public static void EditPosY(int inputPosY)
     {
+        if (s_noteSelected == null) return;
+        if (s_noteSelected.posY == inputPosY) { return; }
+
+        int startPosY, targetPosY;
+        startPosY = s_noteSelected.posY;
+        targetPosY = inputPosY;
+
+        NoteStruct startStruct, targetStruct;
+        startStruct = NoteManager.GetNoteStruct(startPosY);
+        targetStruct = NoteManager.GetNoteStruct(targetPosY);
+
+        int laneIndex;
+        laneIndex = s_noteSelected.lane - 1;
+        if (laneIndex < 0) throw new ArgumentOutOfRangeException(nameof(laneIndex));
+        if (s_noteSelected.GetType() == typeof(NormalNote)) {}
+        if (s_noteSelected != startStruct.Notes[laneIndex]) 
+            throw new Exception("Selected Note doesn't match");
         
+        BaseNote dataHolder;
+        dataHolder = targetStruct.Notes[laneIndex];
+
+        targetStruct.Notes[laneIndex] = s_noteSelected;
+        startStruct.Notes[laneIndex] = dataHolder;
     }
-
-    // Update is called once per frame
-    void Update()
+    public static void EditPosY(bool isIncreased, bool isSingle = false)
     {
-        
+        if (s_noteSelected == null) return;
+
+        int posY = s_noteSelected.posY;
+        if (isIncreased) EditPosY(isSingle ? posY + 1 : posY + 400);
+        else EditPosY(Mathf.Max((isSingle ? posY - 1 : posY - 400), 0));
     }
-
-    public static Task<bool> EditWarning(string message)
+    public static void EditLane(int inputLane)
     {
-        TaskCompletionSource<bool> tcs;
-        s_this.warningPopup.SetActive(true);
-        s_this.warningText.text = message;
+        if (s_noteSelected == null) return;
 
-        tcs = new TaskCompletionSource<bool>();
-        return tcs.Task;
+    }
+    public static void EditLane(bool isIncresed)
+    {
+        if (s_noteSelected == null) return;
+
+    }
+    public static void EditLength(int inputLength)
+    {
+        if (s_noteSelected == null) return;
+
+    }
+    public static void EditLength(bool isIncreased, bool isSingle = false)
+    {
+        if (s_noteSelected == null) return;
+
     }
 }

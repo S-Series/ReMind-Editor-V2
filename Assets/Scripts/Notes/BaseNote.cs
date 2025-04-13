@@ -10,15 +10,17 @@ public class BaseNote : MonoBehaviour
 
     public virtual void UpdateLine(int lane)
     {
-        throw new SystemException("Line Override Failed");
+        throw new Exception("Line Override Failed");
     }
     public virtual void UpdatePosY(int posY)
     {
-        throw new SystemException("PosY Override Failed");
+        throw new Exception("PosY Override Failed");
     }
 
     public virtual void EffectNote()
     {
         // Nothings Here...
     }
+
+    public BaseNote() { throw new Exception("This Method is Unuse"); }
 }

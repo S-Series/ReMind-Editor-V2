@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/Scripts/Tests/NoteField.uss?fileID=7433441132597879392&amp;guid=bada6d0ca9657a348a20c3b2f39db5d6&amp;type=3#NoteField" />
+    <ui:ScrollView name="note-scroll" style="height: 600px;">
+        <ui:VisualElement name="note-content" style="height: 3000px;" />
+    </ui:ScrollView>
+</ui:UXML>
