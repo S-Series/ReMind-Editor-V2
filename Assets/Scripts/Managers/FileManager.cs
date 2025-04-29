@@ -6,7 +6,7 @@ using SFB;
 
 public class FileManager : MonoBehaviour
 {
-    private static readonly string defaultDir = Application.persistentDataPath;
+    private static string defaultDir;
     private static ExtensionFilter[] extensions;
 
     private void Awake()
@@ -15,6 +15,7 @@ public class FileManager : MonoBehaviour
             new ExtensionFilter("JSON Files", "json"),
             new ExtensionFilter("All Files", "*"),
         };
+        defaultDir = Application.persistentDataPath;
     }
 
     public static string GetSaveFilePath()

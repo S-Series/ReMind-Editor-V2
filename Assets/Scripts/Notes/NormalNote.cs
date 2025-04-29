@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class NormalNote: BaseNote
 {
+    private void OnEnable()
+    {
+        base.type = NoteType.Normal;
+    }
     public async override void UpdatePosY(int posY)
     {
         NoteStruct noteStruct;
@@ -11,20 +15,14 @@ public class NormalNote: BaseNote
         noteList = NoteManager.s_Notes.FindAll(item => item.stdPosY == posY);
         if (noteList.Count < 1) { noteStruct = new NoteStruct(posY); }
         else if (noteList.Count == 1) { noteStruct = noteList[0]; }
-        else /**/return;
-        {
-            
-        }
+        else { throw new Exception(""); }
 
         NoteStruct targetStruct;
         List<NoteStruct> targetList;
         targetList = NoteManager.s_Notes.FindAll(item => item.stdPosY == posY);
         if (targetList.Count < 1) { targetStruct = new NoteStruct(posY); }
         else if (targetList.Count == 1) { targetStruct = targetList[0]; }
-        else /**/return;
-        {
-            
-        }
+        else { throw new Exception(""); }
 
         int lane = base.lane;
         if (targetStruct.Notes[lane] == null)

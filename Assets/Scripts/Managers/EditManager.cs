@@ -17,7 +17,7 @@ public class EditManager : MonoBehaviour
         startPosY = s_noteSelected.posY;
         targetPosY = inputPosY;
 
-        NoteStruct startStruct, targetStruct;
+        NoteStruct startStruct, targetStruct; 
         startStruct = NoteManager.GetNoteStruct(startPosY);
         targetStruct = NoteManager.GetNoteStruct(targetPosY);
 
@@ -31,6 +31,8 @@ public class EditManager : MonoBehaviour
         BaseNote dataHolder;
         dataHolder = targetStruct.Notes[laneIndex];
 
+        s_noteSelected.UpdatePosY(targetPosY);
+        dataHolder.UpdatePosY(startPosY);
         targetStruct.Notes[laneIndex] = s_noteSelected;
         startStruct.Notes[laneIndex] = dataHolder;
     }

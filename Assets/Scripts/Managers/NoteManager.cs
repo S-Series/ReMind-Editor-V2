@@ -12,16 +12,6 @@ public class NoteManager : MonoBehaviour
         if (s_this = null) { s_this = this; }
         s_Notes = new List<NoteStruct>();
     }
-    private void Start()
-    {
-
-    }
-
-    private void Update()
-    {
-
-    }
-
     /// <summary> posY값의 [노트 구조체]를 반환, 없으면 구조체를 생성해서 반환 </summary>
     public static NoteStruct GetNoteStruct(int posY)
     {
